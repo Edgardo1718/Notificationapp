@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253603417363",
+    "project_id": "notification-test171810109",
+    "storage_bucket": "notification-test171810109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253603417363:android:41cc92765d606c7ceb1ee6",
+        "android_client_info": {
+          "package_name": "com.example.notimovil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253603417363-cqe06ga4orlo1tt2538ngqvvgtu4m8nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWqiXcyfT7ZArR7Dm9DBcU2mntEig8AOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253603417363-cqe06ga4orlo1tt2538ngqvvgtu4m8nf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

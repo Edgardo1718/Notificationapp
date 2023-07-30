@@ -1,0 +1,92 @@
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text("Wearable notification send"),
+      backgroundColor: Colors.blue,
+      foregroundColor: Colors.white,
+    ),
+    body: Align(
+      alignment: Alignment.center,
+      child: Center(
+        child: Container(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: ListView(
+              children:[
+                const SizedBox(height: 220),
+                TextField(
+                  controller: title,
+                  decoration: InputDecoration(
+                    hintText: "Titulo",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: body,
+                  decoration: InputDecoration(
+                    hintText: "Cuerpo",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    notificationServices.getDeviceToken().then((value) async {
+                      var movil =
+                          "dqogJg-LRrmBXoQ8cd9Ty8:APA91bEky74qgz6z7iAlDbYOaDBEFNf2pC0-hxzZ6lHbalI8EIo21MpN8vK8wLf-o2n6BxuS_YCmx8uTEcmwsWN3185-KS8RP8ExujacVKkfdbImylLHcdvzaTfemsuwuicWt_g0iIfF";
+                      var wear =
+                          "e5JXJcMwS4GW1XWyDnwiNj:APA91bFU9OWyzvxSKPvzMJRG0DkDCJXImgwxcXvzO_KxGqPSsLbhWHZB5lXPVf_ki9f_nU4QzY8VEHxYVbqedDX-S8gt0U0ZF5i51AtOF3LeBq33CkuxjinrcdWokS6FIZiEHwGboCRG";
+                      var data = {
+                        "to":wear,
+                        "priority": "high",
+                        "notification": {
+                          "title": title.text,
+                          "body": body.text,
+                        },
+                        "data": {
+                          "type": "msj",
+                          "id": "123456"
+                        }
+                      };
+                      await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
+                          body: jsonEncode(data),
+                          headers: {
+                            "Content-Type": "application/json; charset=UTF-8",
+                            "Authorization":
+                                "key=AAAAOwvxDRM:APA91bGRPH8kIuZ54e-iMLzdTvrZRYldTUzPWl0YYkJLrz7M8J6Uiv2uMQ5fuTVaJzQ7HmRj8T6XAJr6aa1v0_lVDIicOysZPUSctOPwscG2tCvjxuVUXMyFqjaPhThN0U2cQQHefEsQ"
+                          });
+                    });
+                  },
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  child: const Text('Enviar'),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
